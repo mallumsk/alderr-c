@@ -76,50 +76,25 @@ function loadComponent(id, file) {
         .catch(error => console.error('Error loading component', file, error));
 }
 
-//function highlightActiveLink(container) {
+function highlightActiveLink(container) {
     // Get the current page name (e.g., "about.html")
     // If the path is empty or "/", default to "index.html"
-   // let currentPath = window.location.pathname.split("/").pop();
-   // if (currentPath === "") currentPath = "index.html";
+    let currentPath = window.location.pathname.split("/").pop();
+    if (currentPath === "") currentPath = "index.html";
 
     // Find all links inside the header
-   // const links = container.querySelectorAll('nav a');
-
-  //  links.forEach(link => {
-        // Get the link's filename (e.g., "about.html")
-        //const linkPath = link.getAttribute('href');
-
-        //if (linkPath === currentPath) {
-          //  link.classList.add('active');
-        //}
-   // });
-
-
-
-    function highlightActiveLink(container) {
-    const currentPath = window.location.pathname.replace(/\/$/, '');
-
     const links = container.querySelectorAll('nav a');
 
     links.forEach(link => {
-        const linkHref = link.getAttribute('href');
+        // Get the link's filename (e.g., "about.html")
+        const linkPath = link.getAttribute('href');
 
-        if (!linkHref) return;
-
-        // Match by ending (works for subfolders & GitHub Pages)
-        if (currentPath.endsWith(linkHref)) {
+        if (linkPath === currentPath) {
             link.classList.add('active');
         }
     });
+    
 }
-
-
-
-
-
-
-
-
 
 loadComponent('header-placeholder', 'header.html');
 loadComponent('footer-placeholder', 'footer.html');
